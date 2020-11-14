@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Lecture notes - course</title>
+    </head>
+
+    <body>
+        <p>User: {{ user.get_username }}</p>
+        <h2>Notes form course {{ course.name }}</h2>
+        <ul>
+            {% for n in notes %}
+
+            <li>{{n.date}} <br> {{n.noteText}}<br> link: {{n.link}}</li><br>
+
+            <form action="/share" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="noteId" value={{n.pk}}>
+                <p>Share to other user:
+                <select name="userId">
+                {% for u in users %}
+                    <option value="{{u.pk}}">{{u.username}}</option>
+                {% endfor %}
+                </select>
+                <input type="submit" value="Share"/></p>
+            </form>
+
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>

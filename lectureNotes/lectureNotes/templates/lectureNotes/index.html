@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Lecture notes</title>
+    </head>
+
+    <body>
+        <p>User: {{ user.get_username }} --<a href="\logout">Log out</a></p>
+
+        <h2>Notes</h2>
+        <p><a href="/newnote">New note</a></p>
+        <ul>
+            {% for c in courses %}
+            <li>{{c.name}} - <a href="/course/{{c.pk}}">view</a> - delete</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Add new course</h2>
+        <form action="/" method="POST">
+            {% csrf_token %}
+            <p>Course name: <input type="text" name="coursename"/>
+            <input type="submit" value="Add"/></p>
+        </form>
+        <h2>Shared notes</h2>
+        
+    </body>
+</html>
