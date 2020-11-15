@@ -9,6 +9,8 @@ User must signup first. After that user can login with credentials given. First,
 
 User can share notes to other users from noteview. 
 
+Application can be launched by command "python3 manage.py runserver"
+
 ## Vulnerabilites
 
 ### Broken Authentication
@@ -26,7 +28,7 @@ Problem: malicious user can add javascrip code in note which then shares with ot
 Fix: Django has built in feature which escapes all strings inserted in html templates. In index.html file where shared notes are diplayed "{{n.noteText|safe}}" should be replaced with this {{n.noteText}} so that this feature is enabled. 
 
 ### Sensitive Data Exposure
-Problem: Login information is sent to the server by GET method, which means that credentials are not encrypted when sent via internet.
+Problem: Login information is sent to the server by GET method, which means that credentials are subject to eavesdropping.
 
 Fix: This can be fixed by using POST method similarly than is done in signup. In that case credentials are better secured if https protocol is used. Even better would be to use the Djangos own authentication system insted of self made login and signup functions.
 
