@@ -4,12 +4,12 @@
     </head>
 
     <body>
-        <p>User: {{ user.get_username }}</p>
+        <p>User: {{ user.get_username }} -- <a href="\">Home</a></p>
         <h2>Notes form course {{ course.name }}</h2>
         <ul>
             {% for n in notes %}
 
-            <li>{{n.date}} <br> {{n.noteText}}<br> link: {{n.link}}</li><br>
+            <li>{{n.date}} <br> {{n.noteText}}<br> link: {{n.link}}</li>
 
             <form action="/share" method="POST">
                 {% csrf_token %}
@@ -25,6 +25,18 @@
 
             {% endfor %}
         </ul>
+
+        <h2>New note</h2>
+        <form action="/newnote" method="POST">
+			{% csrf_token %}
+            <p>Course: {{course.name}}
+            <input type="hidden" name="course" value={{course.pk}}>
+            <p>Date <input type="date" name="date"/></p>
+            <p>Notes <br><textarea name="notes" rows="10" cols="30"></textarea></p>
+            <p>Link <input type="text" name="link"/></p>
+            
+            <input type="submit" value="Add!"/>
+        </form>
 
     </body>
 </html>

@@ -7,15 +7,14 @@
         <p>User: {{ user.get_username }}</p>
         <h1>New note</h1>
         <form action="/newnote" method="POST">
-			{% csrf_token %}
             <p>Course:
             <select name="course">
 			{% for c in courses %}
-                <option value="{{c.name}}">{{c.name}}</option>
+                <option value="{{c.pk}}">{{c.name}}</option>
             {% endfor %}
             </select></p>
             <p>Date <input type="date" name="date"/></p>
-            <p>Notes: <input type="text" name="notes"/></p>
+            <p>Notes: <textarea name="notes" rows="10" cols="30"></textarea></p>
             <p>Link: <input type="text" name="link"/></p>
             
             <input type="submit" value="Add!"/>

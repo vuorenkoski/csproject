@@ -6,7 +6,7 @@
     <body>
         <p>User: {{ user.get_username }} --<a href="\logout">Log out</a></p>
 
-        <h2>Notes</h2>
+        <h2>My own notes</h2>
         <p><a href="/newnote">New note</a></p>
         <ul>
             {% for c in courses %}
@@ -21,6 +21,10 @@
             <input type="submit" value="Add"/></p>
         </form>
         <h2>Shared notes</h2>
-        
+        <ul>
+            {% for n in notes %}
+            <li><b>Course: {{n.note.course.name}} </b><br> {{n.note.date}} <br> {{n.note.noteText|safe}}<br> link: {{n.note.link}}</li><br>
+            {% endfor %}
+        </ul>
     </body>
 </html>

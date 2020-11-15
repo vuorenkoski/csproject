@@ -15,5 +15,5 @@ class Note(models.Model):
     link = models.TextField()
 
 class Permission(models.Model):
-	course = models.ForeignKey(Note, on_delete=models.CASCADE)
+	note = models.ForeignKey(Note, on_delete=models.CASCADE)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
